@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import android.widget.Button
 import android.widget.TextView
 import android.content.Intent
+import android.net.Uri
 
 class MainActivity5 : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -18,6 +19,7 @@ class MainActivity5 : AppCompatActivity() {
         setContentView(R.layout.activity_main5)
 
         var btnVoltar = findViewById<Button>(R.id.btnVoltar)
+        var btnGitHub = findViewById<Button>(R.id.btnGitHub)
 
         var tvHeroiFinal = findViewById<TextView>(R.id.tvHeroiFinal)
         if (getIntent().hasExtra("heroiDc")) {
@@ -35,6 +37,10 @@ class MainActivity5 : AppCompatActivity() {
 
         btnVoltar.setOnClickListener {
             intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        btnGitHub.setOnClickListener {
+            intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/bernardolobomarques/desenvolvimentoMobile2026.1/tree/main/intentexplicita"))
             startActivity(intent)
         }
     }
