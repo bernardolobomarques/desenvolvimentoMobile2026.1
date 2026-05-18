@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // LOG ADICIONADO AQUI
+        Log.d("CicloDeVida", "MainActivity: onCreate")
+
         setupPermissions()
 
         val et_number = findViewById<EditText>(R.id.et_number)
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val btn_call = findViewById<Button>(R.id.btn_call)
         btn_call.setOnClickListener(View.OnClickListener {
             val intent = Intent(Intent.ACTION_CALL)
-            intent.data = Uri.parse("tel:" + et_number.getText())
+            intent.data = Uri.parse("tel:" + et_number.text)
             startActivity(intent)
         })
 
@@ -83,6 +86,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(AlarmClock.ACTION_SHOW_ALARMS)
             startActivity(intent)
         })
+
+        val btn_trocar = findViewById<Button>(R.id.btn_trocar)
+        btn_trocar.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        })
     }
 
     private fun setupPermissions() {
@@ -101,4 +110,37 @@ class MainActivity : AppCompatActivity() {
             CALL_REQUEST_CODE)
     }
 
+    // ==========================================
+    // MÉTODOS DO CICLO DE VIDA ADICIONADOS ABAIXO
+    // ==========================================
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("CicloDeVida", "MainActivity: onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("CicloDeVida", "MainActivity: onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("CicloDeVida", "MainActivity: onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("CicloDeVida", "MainActivity: onStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("CicloDeVida", "MainActivity: onRestart")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("CicloDeVida", "MainActivity: onDestroy")
+    }
 }
