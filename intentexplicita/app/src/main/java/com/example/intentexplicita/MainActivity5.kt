@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import android.widget.Button
 import android.widget.TextView
 import android.content.Intent
-import android.net.Uri
 import androidx.core.net.toUri
 
 class MainActivity5 : AppCompatActivity() {
@@ -41,8 +40,10 @@ class MainActivity5 : AppCompatActivity() {
             startActivity(intent)
         }
         btnGitHub.setOnClickListener {
-            intent = Intent(Intent.ACTION_VIEW,
-                "https://github.com/bernardolobomarques/desenvolvimentoMobile2026.1".toUri())
+            intent = Intent(
+                Intent.ACTION_VIEW,
+                "https://github.com/bernardolobomarques/desenvolvimentoMobile2026.1/tree/main/intentexplicita".toUri()
+            )
             startActivity(intent)
         }
     }

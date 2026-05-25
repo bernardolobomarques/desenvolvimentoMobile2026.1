@@ -26,9 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // LOG ADICIONADO AQUI
-        Log.d("CicloDeVida", "MainActivity: onCreate")
-
+    // LOG ADICIONADO AQUI
+    Log.d("CicloDeVida", "MainActivity: onCreate")
         setupPermissions()
 
         val et_number = findViewById<EditText>(R.id.et_number)
@@ -86,7 +85,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(AlarmClock.ACTION_SHOW_ALARMS)
             startActivity(intent)
         })
-
         val btn_trocar = findViewById<Button>(R.id.btn_trocar)
         btn_trocar.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, MainActivity2::class.java)
