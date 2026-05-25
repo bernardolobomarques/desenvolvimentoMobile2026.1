@@ -1,0 +1,61 @@
+flowchart LR
+    subgraph UI[UI Layer]
+        A[MainActivity]
+        B[DeviceFormActivity]
+        C[DeviceAdapter]
+        D[activity_main.xml]
+        E[activity_device_form.xml]
+        F[item_device.xml]
+    end
+
+    subgraph NET[Network Layer]
+        G[RetrofitClient]
+        H[DeviceApi]
+        I[Device DTO]
+    end
+
+    subgraph API[Backend API]
+        J[FastAPI app]
+        K[devices router]
+        L[devices service]
+        M[devices repository]
+        N[SQLAlchemy models]
+        O[SQLAlchemy session]
+    end
+
+    subgraph DB[Database]
+        P[(MySQL: energy_monitor)]
+        Q[devices table]
+    end
+
+    A -->|onResume GET devices| G
+    A -->|opens form| B
+    A -->|list renders| C
+    C -->|binds views| F
+
+    B -->|create payload| I
+    B -->|edit payload| I
+    B -->|GET device by id| G
+    B -->|POST devices| G
+    B -->|PUT device by id| G
+
+    A -->|DELETE device by id| G
+
+    G -->|create API client| H
+    H -->|serialize request| I
+    H -->|call HTTP| J
+
+    J --> K
+    K --> L
+    L --> M
+    M --> O
+    O --> N
+    N --> Q
+    Q --> P
+
+    J -->|JSON response| H
+    H -->|response DTO| I
+    I -->|list data| C
+
+    A --> D
+    B --> E

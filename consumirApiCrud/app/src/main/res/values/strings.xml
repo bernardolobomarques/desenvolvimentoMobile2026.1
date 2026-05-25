@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">consumirApiCrud</string>
+    <string name="add_device">Adicionar dispositivo</string>
+    <string name="device_name">Nome do dispositivo</string>
+    <string name="device_type">Tipo do dispositivo</string>
+    <string name="device_active">Ativo</string>
+    <string name="save">Salvar</string>
+    <string name="fill_required_fields">Preencha nome e tipo.</string>
+    <string name="error_loading_devices">Erro ao carregar dispositivos.</string>
+    <string name="error_loading_device">Erro ao carregar dispositivo.</string>
+    <string name="error_saving_device">Erro ao salvar dispositivo.</string>
+    <string name="error_deleting_device">Erro ao excluir dispositivo.</string>
+    <string name="device_deleted">Dispositivo excluido.</string>
+    <string name="delete_device">Excluir dispositivo</string>
+    <string name="network_error">Falha de rede.</string>
+</resources>
