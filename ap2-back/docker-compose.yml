@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: metaquest
+      POSTGRES_USER: metaquest
+      POSTGRES_PASSWORD: metaquest
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U metaquest"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://metaquest:metaquest@db:5432/metaquest
+    ports:
+      - "8000:8080"
+
+volumes:
+  pgdata:
