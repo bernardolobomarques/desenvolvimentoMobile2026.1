@@ -2,6 +2,8 @@ package com.metaquest.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.metaquest.databinding.ItemGoalBinding
 import com.metaquest.models.Goal
@@ -10,14 +12,13 @@ import com.metaquest.utils.DateUtils
 class GoalsAdapter(
     private val onItemClick: (Goal) -> Unit,
     private val onItemLongClick: (Goal) -> Unit
-) : RecyclerView.Adapter<GoalsAdapter.GoalViewHolder>() {
+) : ListAdapter<Goal, GoalsAdapter.GoalViewHolder>(DIFF_CALLBACK) {
 
-    private val items = mutableListOf<Goal>()
-
-    fun submitList(goals: List<Goal>) {
-        items.clear()
-        items.addAll(goals)
-        notifyDataSetChanged()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Goal>() {
+            override fun areItemsTheSame(old: Goal, new: Goal) = old.id == new.id
+            override fun areContentsTheSame(old: Goal, new: Goal) = old == new
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalViewHolder {
@@ -25,9 +26,8 @@ class GoalsAdapter(
         return GoalViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: GoalViewHolder, position: Int) = holder.bind(items[position])
-
-    override fun getItemCount() = items.size
+    override fun onBindViewHolder(holder: GoalViewHolder, position: Int) =
+        holder.bind(getItem(position))
 
     inner class GoalViewHolder(private val binding: ItemGoalBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -46,11 +46,7 @@ class GoalsAdapter(
             }
             binding.ivPriority.setImageResource(prioRes)
 
-            if (goal.concluida) {
-                binding.root.alpha = 0.5f
-            } else {
-                binding.root.alpha = 1f
-            }
+            binding.root.alpha = if (goal.concluida) 0.5f else 1f
 
             binding.root.setOnClickListener { onItemClick(goal) }
             binding.root.setOnLongClickListener { onItemLongClick(goal); true }

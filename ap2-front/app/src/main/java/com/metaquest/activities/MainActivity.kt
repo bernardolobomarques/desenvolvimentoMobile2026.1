@@ -14,6 +14,7 @@ import java.io.IOException
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var lastFetchTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        carregarResumo()
+        // Evita chamada repetida em rotações de tela e voltas rápidas do backstack
+        if (System.currentTimeMillis() - lastFetchTime > 30_000) {
+            carregarResumo()
+        }
     }
 
     private fun carregarResumo() {
@@ -42,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 val response = RetrofitClient.gamification.getSummary()
                 if (response.isSuccessful) {
                     val summary = response.body()!!
+                    lastFetchTime = System.currentTimeMillis()
                     binding.tvXp.text = "XP: ${summary.xp_total}"
                     binding.tvNivel.text = "Nível ${summary.nivel}"
                     binding.tvStreak.text = "🔥 ${summary.streak} dias"
