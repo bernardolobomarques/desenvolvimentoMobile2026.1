@@ -12,7 +12,7 @@
 
     <!-- Borda do escudo -->
     <path
-        android:fillColor="00000000"
+        android:fillColor="#00000000"
         android:strokeColor="#FFA000"
         android:strokeWidth="2.5"
         android:pathData="M54,18 L82,30 L82,56 C82,72 70,84 54,90 C38,84 26,72 26,56 L26,30 Z" />
