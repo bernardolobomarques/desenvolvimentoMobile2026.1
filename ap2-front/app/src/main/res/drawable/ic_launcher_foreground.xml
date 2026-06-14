@@ -4,7 +4,21 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+
+    <!-- Escudo -->
     <path
-        android:fillColor="#6750A4"
-        android:pathData="M54,12L63.27,34.14L88,37.63L71.5,53.7L75.55,78.37L54,67L32.45,78.37L36.5,53.7L20,37.63L44.73,34.14Z" />
+        android:fillColor="#FFFDE7"
+        android:pathData="M54,18 L82,30 L82,56 C82,72 70,84 54,90 C38,84 26,72 26,56 L26,30 Z" />
+
+    <!-- Borda do escudo -->
+    <path
+        android:fillColor="00000000"
+        android:strokeColor="#FFA000"
+        android:strokeWidth="2.5"
+        android:pathData="M54,18 L82,30 L82,56 C82,72 70,84 54,90 C38,84 26,72 26,56 L26,30 Z" />
+
+    <!-- Estrela dourada centralizada no escudo -->
+    <path
+        android:fillColor="#FFA000"
+        android:pathData="M54,34 L57.8,45.4 L70,45.4 L60.1,52.6 L63.9,64 L54,56.8 L44.1,64 L47.9,52.6 L38,45.4 L50.2,45.4 Z" />
 </vector>
