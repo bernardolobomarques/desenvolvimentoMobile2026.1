@@ -38,15 +38,27 @@ class GoalsAdapter(
             val ctx = binding.root.context
 
             binding.tvGoalTitle.text = goal.titulo
-            binding.tvGoalPrazo.text = DateUtils.toDisplay(goal.prazo)
             binding.tvGoalCategoria.text = goal.categoria ?: "—"
             binding.progressBar.progress = goal.progresso
             binding.tvProgresso.text = "${goal.progresso}%"
 
+            val prazoLabel = DateUtils.prazoLabel(goal.prazo)
+            val daysLeft = DateUtils.daysRemaining(goal.prazo)
+            binding.tvGoalPrazo.text = prazoLabel
+            binding.tvGoalPrazo.setTextColor(
+                ContextCompat.getColor(ctx, when {
+                    daysLeft == null         -> R.color.on_surface_variant
+                    daysLeft < 0             -> R.color.priority_high
+                    daysLeft == 0L           -> R.color.priority_high
+                    daysLeft <= 3            -> R.color.priority_medium
+                    else                     -> R.color.on_surface_variant
+                })
+            )
+
             val (prioIcon, prioColor) = when (goal.prioridade) {
-                "alta"  -> R.drawable.ic_priority_high  to R.color.priority_high
+                "alta"  -> R.drawable.ic_priority_high   to R.color.priority_high
                 "media" -> R.drawable.ic_priority_medium to R.color.priority_medium
-                else    -> R.drawable.ic_priority_low   to R.color.priority_low
+                else    -> R.drawable.ic_priority_low    to R.color.priority_low
             }
             binding.ivPriority.setImageResource(prioIcon)
             binding.priorityStrip.setBackgroundColor(ContextCompat.getColor(ctx, prioColor))

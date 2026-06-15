@@ -55,6 +55,55 @@
                     android:lines="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Prazo -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPrazo"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Prazo (opcional)"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPrazo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    android:hint="Toque para escolher a data" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Atalhos rápidos de prazo -->
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip7dias"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7 dias" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip30dias"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30 dias" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip90dias"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="90 dias" />
+
+            </com.google.android.material.chip.ChipGroup>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
