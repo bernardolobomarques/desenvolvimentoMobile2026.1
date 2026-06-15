@@ -2,9 +2,11 @@ package com.metaquest.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.metaquest.R
 import com.metaquest.databinding.ItemGoalBinding
 import com.metaquest.models.Goal
 import com.metaquest.utils.DateUtils
@@ -33,20 +35,23 @@ class GoalsAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(goal: Goal) {
+            val ctx = binding.root.context
+
             binding.tvGoalTitle.text = goal.titulo
             binding.tvGoalPrazo.text = DateUtils.toDisplay(goal.prazo)
             binding.tvGoalCategoria.text = goal.categoria ?: "—"
             binding.progressBar.progress = goal.progresso
             binding.tvProgresso.text = "${goal.progresso}%"
 
-            val prioRes = when (goal.prioridade) {
-                "alta"  -> com.metaquest.R.drawable.ic_priority_high
-                "media" -> com.metaquest.R.drawable.ic_priority_medium
-                else    -> com.metaquest.R.drawable.ic_priority_low
+            val (prioIcon, prioColor) = when (goal.prioridade) {
+                "alta"  -> R.drawable.ic_priority_high  to R.color.priority_high
+                "media" -> R.drawable.ic_priority_medium to R.color.priority_medium
+                else    -> R.drawable.ic_priority_low   to R.color.priority_low
             }
-            binding.ivPriority.setImageResource(prioRes)
+            binding.ivPriority.setImageResource(prioIcon)
+            binding.priorityStrip.setBackgroundColor(ContextCompat.getColor(ctx, prioColor))
 
-            binding.root.alpha = if (goal.concluida) 0.5f else 1f
+            binding.root.alpha = if (goal.concluida) 0.45f else 1f
 
             binding.root.setOnClickListener { onItemClick(goal) }
             binding.root.setOnLongClickListener { onItemLongClick(goal); true }
