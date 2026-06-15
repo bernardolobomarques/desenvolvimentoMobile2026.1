@@ -13,7 +13,7 @@
         android:background="@color/primary"
         app:titleTextColor="@color/on_primary"
         app:navigationIconTint="@color/on_primary"
-        app:title="Nova Meta" />
+        app:title="Editar Meta" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             android:orientation="vertical"
             android:padding="24dp">
 
+            <!-- Título -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilTitulo"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -40,6 +41,7 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- Descrição -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -107,6 +109,7 @@
 
             </com.google.android.material.chip.ChipGroup>
 
+            <!-- Categoria -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,6 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <!-- Prioridade -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"
-                android:text="Salvar Meta"
+                android:text="Salvar Alterações"
                 android:textSize="16sp" />
 
         </LinearLayout>

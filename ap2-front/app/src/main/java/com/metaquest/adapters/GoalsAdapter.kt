@@ -1,6 +1,7 @@
 package com.metaquest.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
@@ -42,16 +43,20 @@ class GoalsAdapter(
             binding.progressBar.progress = goal.progresso
             binding.tvProgresso.text = "${goal.progresso}%"
 
+            // Badge concluída
+            binding.tvConcluida.visibility = if (goal.concluida) View.VISIBLE else View.GONE
+
+            // Prazo contextual com cor de urgência
             val prazoLabel = DateUtils.prazoLabel(goal.prazo)
             val daysLeft = DateUtils.daysRemaining(goal.prazo)
             binding.tvGoalPrazo.text = prazoLabel
             binding.tvGoalPrazo.setTextColor(
                 ContextCompat.getColor(ctx, when {
-                    daysLeft == null         -> R.color.on_surface_variant
-                    daysLeft < 0             -> R.color.priority_high
-                    daysLeft == 0L           -> R.color.priority_high
-                    daysLeft <= 3            -> R.color.priority_medium
-                    else                     -> R.color.on_surface_variant
+                    daysLeft == null  -> R.color.on_surface_variant
+                    daysLeft < 0     -> R.color.priority_high
+                    daysLeft == 0L   -> R.color.priority_high
+                    daysLeft <= 3    -> R.color.priority_medium
+                    else             -> R.color.on_surface_variant
                 })
             )
 
@@ -63,7 +68,7 @@ class GoalsAdapter(
             binding.ivPriority.setImageResource(prioIcon)
             binding.priorityStrip.setBackgroundColor(ContextCompat.getColor(ctx, prioColor))
 
-            binding.root.alpha = if (goal.concluida) 0.45f else 1f
+            binding.root.alpha = if (goal.concluida) 0.6f else 1f
 
             binding.root.setOnClickListener { onItemClick(goal) }
             binding.root.setOnLongClickListener { onItemLongClick(goal); true }

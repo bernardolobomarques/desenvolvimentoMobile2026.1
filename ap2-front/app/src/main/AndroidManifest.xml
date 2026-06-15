@@ -26,6 +26,7 @@
         <activity android:name=".activities.GoalsListActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
         <activity android:name=".activities.WizardActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
         <activity android:name=".activities.ResultActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
+        <activity android:name=".activities.EditGoalActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
 
     </application>
 
