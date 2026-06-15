@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="Carregando..."
+            android:text=""
             android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
             android:textColor="@color/primary" />
 
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Nível 1"
+            android:text=""
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
         <LinearLayout
@@ -47,14 +47,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="XP: 0"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
             <TextView
                 android:id="@+id/tvStreak"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🔥 0 dias"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
         </LinearLayout>
 

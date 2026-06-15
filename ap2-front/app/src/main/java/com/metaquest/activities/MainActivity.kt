@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         // Evita chamada repetida em rotações de tela e voltas rápidas do backstack
-        if (System.currentTimeMillis() - lastFetchTime > 30_000) {
+        if (System.currentTimeMillis() - lastFetchTime > 5_000) {
             carregarResumo()
         }
     }
