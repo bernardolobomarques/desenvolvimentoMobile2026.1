@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.metaquest.R
 import com.metaquest.adapters.GoalsAdapter
 import com.metaquest.databinding.ActivityGoalsListBinding
 import com.metaquest.dialogs.GoalActionDialogFragment
@@ -18,6 +19,7 @@ class GoalsListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGoalsListBinding
     private lateinit var adapter: GoalsAdapter
+    private var allGoals: List<Goal> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,8 @@ class GoalsListActivity : AppCompatActivity() {
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
+
+        binding.chipGroupFiltro.setOnCheckedStateChangeListener { _, _ -> applyFilter() }
     }
 
     override fun onResume() {
@@ -44,9 +48,8 @@ class GoalsListActivity : AppCompatActivity() {
             try {
                 val response = RetrofitClient.goals.listGoals()
                 if (response.isSuccessful) {
-                    val goals = response.body() ?: emptyList()
-                    adapter.submitList(goals)
-                    binding.tvEmpty.visibility = if (goals.isEmpty()) View.VISIBLE else View.GONE
+                    allGoals = response.body() ?: emptyList()
+                    applyFilter()
                 } else {
                     Toast.makeText(this@GoalsListActivity, "Erro ao carregar metas", Toast.LENGTH_SHORT).show()
                 }
@@ -56,14 +59,34 @@ class GoalsListActivity : AppCompatActivity() {
         }
     }
 
+    private fun applyFilter() {
+        val filtered = when (binding.chipGroupFiltro.checkedChipId) {
+            R.id.chipAtivas     -> allGoals.filter { !it.concluida }
+            R.id.chipConcluidas -> allGoals.filter { it.concluida }
+            else                -> allGoals
+        }
+        adapter.submitList(filtered)
+
+        val isEmpty = filtered.isEmpty()
+        binding.tvEmpty.visibility = if (isEmpty) View.VISIBLE else View.GONE
+        if (isEmpty) {
+            binding.tvEmptyTitle.text = when (binding.chipGroupFiltro.checkedChipId) {
+                R.id.chipAtivas     -> "Nenhuma meta ativa."
+                R.id.chipConcluidas -> "Nenhuma meta concluída ainda."
+                else                -> "Nenhuma meta ainda."
+            }
+            binding.tvEmptySubtitle.text = when (binding.chipGroupFiltro.checkedChipId) {
+                R.id.chipConcluidas -> "Conclua uma meta para vê-la aqui!"
+                else                -> "Crie sua primeira meta!"
+            }
+        }
+    }
+
     private fun openActionDialog(goal: Goal) {
         GoalActionDialogFragment.newInstance(goal).show(supportFragmentManager, "goal_action")
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
-    }
+    override fun onSupportNavigateUp(): Boolean { finish(); return true }
 
     fun refreshList() = carregarMetas()
 }

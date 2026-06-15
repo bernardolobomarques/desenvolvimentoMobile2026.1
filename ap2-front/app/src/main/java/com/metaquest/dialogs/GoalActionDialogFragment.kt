@@ -1,10 +1,12 @@
 package com.metaquest.dialogs
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
+import com.metaquest.activities.EditGoalActivity
 import com.metaquest.activities.GoalsListActivity
 import com.metaquest.models.Goal
 import com.metaquest.network.RetrofitClient
@@ -18,13 +20,14 @@ class GoalActionDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?) = AlertDialog.Builder(requireContext())
         .setTitle(goal.titulo)
-        .setItems(arrayOf("Atualizar Progresso", "Concluir", "Duplicar", "Adiar +7 dias", "Excluir")) { _, which ->
+        .setItems(arrayOf("Editar", "Atualizar Progresso", "Concluir", "Duplicar", "Adiar +7 dias", "Excluir")) { _, which ->
             when (which) {
-                0 -> abrirProgressoDialog()
-                1 -> concluirMeta()
-                2 -> duplicarMeta()
-                3 -> adiarMeta()
-                4 -> confirmarExclusao()
+                0 -> editarMeta()
+                1 -> abrirProgressoDialog()
+                2 -> concluirMeta()
+                3 -> duplicarMeta()
+                4 -> adiarMeta()
+                5 -> confirmarExclusao()
             }
         }
         .create()
@@ -33,6 +36,14 @@ class GoalActionDialogFragment : DialogFragment() {
         super.onCreate(savedInstanceState)
         @Suppress("DEPRECATION")
         goal = requireArguments().getParcelable("goal")!!
+    }
+
+    private fun editarMeta() {
+        val intent = Intent(requireContext(), EditGoalActivity::class.java).apply {
+            putExtra("goal_id", goal.id)
+        }
+        startActivity(intent)
+        dismiss()
     }
 
     private fun abrirProgressoDialog() {
