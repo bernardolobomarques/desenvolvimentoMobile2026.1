@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.CreateGoalActivity" android:exported="false" />
-        <activity android:name=".activities.GoalsListActivity" android:exported="false" />
-        <activity android:name=".activities.WizardActivity" android:exported="false" />
-        <activity android:name=".activities.ResultActivity" android:exported="false" />
+        <activity android:name=".activities.CreateGoalActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
+        <activity android:name=".activities.GoalsListActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
+        <activity android:name=".activities.WizardActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
+        <activity android:name=".activities.ResultActivity" android:exported="false" android:theme="@style/Theme.MetaQuest" />
 
     </application>
 

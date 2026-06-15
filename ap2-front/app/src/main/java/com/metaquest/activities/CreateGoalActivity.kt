@@ -23,18 +23,14 @@ class CreateGoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateGoalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = "Nova Meta"
 
         binding.spinnerCategoria.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categorias)
             .also { it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
 
         binding.spinnerPrioridade.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, prioridades)
             .also { it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
-
-        binding.switchAltaPrioridade.setOnCheckedChangeListener { _, checked ->
-            if (checked) binding.spinnerPrioridade.setSelection(2)
-        }
 
         val goalId = intent.getLongExtra("goal_id", -1L)
         if (goalId != -1L) carregarMeta(goalId)
@@ -64,9 +60,10 @@ class CreateGoalActivity : AppCompatActivity() {
     private fun salvarMeta(existingId: Long) {
         val titulo = binding.etTitulo.text.toString().trim()
         if (titulo.isEmpty()) {
-            binding.etTitulo.error = "Título obrigatório"
+            binding.tilTitulo.error = "Título obrigatório"
             return
         }
+        binding.tilTitulo.error = null
 
         val goal = Goal(
             titulo = titulo,

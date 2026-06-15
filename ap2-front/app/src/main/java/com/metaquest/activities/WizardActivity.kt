@@ -16,8 +16,8 @@ class WizardActivity : AppCompatActivity(), GoalWizardFragment.OnWizardCompleteL
         super.onCreate(savedInstanceState)
         binding = ActivityWizardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = "Assistente de Metas"
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
