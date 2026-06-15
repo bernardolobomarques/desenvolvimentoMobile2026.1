@@ -23,8 +23,8 @@ class GoalsListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGoalsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = "Minhas Metas"
 
         adapter = GoalsAdapter(
             onItemClick = { openActionDialog(it) },

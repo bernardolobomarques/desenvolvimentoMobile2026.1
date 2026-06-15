@@ -20,8 +20,8 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title = "Resultado"
 
         @Suppress("DEPRECATION")
         goal = intent.getParcelableExtra("goal") ?: run { finish(); return }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.MetaQuest" parent="Theme.Material3.DayNight.NoActionBar">
+
+    <!-- Tema da MainActivity (sem ActionBar — usa hero header próprio) -->
+    <style name="Theme.MetaQuest" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
         <item name="colorPrimaryContainer">@color/primary_container</item>
@@ -19,7 +21,8 @@
         <item name="android:navigationBarColor">@color/background</item>
     </style>
 
-    <style name="Theme.MetaQuest.ActionBar" parent="Theme.Material3.DayNight">
+    <!-- Tema das demais activities (com ActionBar navy explícita) -->
+    <style name="Theme.MetaQuest.ActionBar" parent="Theme.Material3.Light">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
         <item name="colorPrimaryContainer">@color/primary_container</item>
@@ -34,6 +37,24 @@
         <item name="colorOnSurface">@color/on_surface</item>
         <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
         <item name="colorError">@color/error</item>
+        <!-- ActionBar com fundo navy explícito -->
+        <item name="actionBarStyle">@style/Widget.MetaQuest.ActionBar</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.MetaQuest.ActionBar</item>
         <item name="android:statusBarColor">@color/primary</item>
     </style>
+
+    <!-- ActionBar com background navy e texto branco -->
+    <style name="Widget.MetaQuest.ActionBar" parent="Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/primary</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <!-- Sobrescreve cores do conteúdo da ActionBar para branco -->
+    <style name="ThemeOverlay.MetaQuest.ActionBar" parent="">
+        <item name="android:textColorPrimary">@color/on_primary</item>
+        <item name="android:textColorSecondary">@color/on_primary</item>
+        <item name="colorControlNormal">@color/on_primary</item>
+        <item name="actionMenuTextColor">@color/on_primary</item>
+    </style>
+
 </resources>

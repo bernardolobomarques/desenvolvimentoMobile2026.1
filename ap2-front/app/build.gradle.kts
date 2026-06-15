@@ -24,7 +24,14 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val apiBaseUrl = localProps.getProperty("API_BASE_URL", "http://10.0.2.2:8000/")
+        // Normaliza a URL: adiciona https:// se não tiver scheme e garante barra final
+        var apiBaseUrl = localProps.getProperty("API_BASE_URL", "http://10.0.2.2:8000/").trim()
+        if (!apiBaseUrl.startsWith("http://") && !apiBaseUrl.startsWith("https://")) {
+            apiBaseUrl = "https://$apiBaseUrl"
+        }
+        if (!apiBaseUrl.endsWith("/")) {
+            apiBaseUrl = "$apiBaseUrl/"
+        }
         buildConfigField("String", "API_BASE_URL", "\"$apiBaseUrl\"")
     }
 

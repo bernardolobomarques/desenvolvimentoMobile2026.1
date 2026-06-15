@@ -1,77 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/background">
 
-    <LinearLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center">
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:titleTextColor="@color/on_primary"
+        app:navigationIconTint="@color/on_primary"
+        app:title="Resultado" />
 
-        <ImageView
-            android:id="@+id/ivBadge"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:contentDescription="Badge conquistado"
-            android:src="@drawable/ic_badge_silver" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvTituloMeta"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:text="Título da meta"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
-            android:textColor="@color/primary" />
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/tvClassificacao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="Meta média (até 30 dias)"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+            <ImageView
+                android:id="@+id/ivBadge"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:contentDescription="Badge conquistado"
+                android:src="@drawable/ic_badge_silver" />
 
-        <TextView
-            android:id="@+id/tvDificuldade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="Dificuldade: moderada"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+            <TextView
+                android:id="@+id/tvTituloMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Título da meta"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textColor="@color/primary" />
 
-        <TextView
-            android:id="@+id/tvXpSugerido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="XP sugerido: 20"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            android:textColor="@color/xp_color" />
+            <TextView
+                android:id="@+id/tvClassificacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Meta média (até 30 dias)"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSalvarMeta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Salvar Meta"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvDificuldade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="Dificuldade: moderada"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCompartilhar"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Compartilhar"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tvXpSugerido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="XP sugerido: 20"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                android:textColor="@color/xp_color" />
 
-    </LinearLayout>
-</ScrollView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSalvarMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Salvar Meta"
+                android:textSize="16sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCompartilhar"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Compartilhar"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

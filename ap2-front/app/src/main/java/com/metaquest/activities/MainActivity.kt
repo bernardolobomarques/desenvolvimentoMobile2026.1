@@ -2,7 +2,6 @@ package com.metaquest.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.metaquest.databinding.ActivityMainBinding
@@ -34,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Evita chamada repetida em rotações de tela e voltas rápidas do backstack
         if (System.currentTimeMillis() - lastFetchTime > 5_000) {
             carregarResumo()
         }
@@ -47,14 +45,15 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val summary = response.body()!!
                     lastFetchTime = System.currentTimeMillis()
-                    binding.tvXp.text = "XP: ${summary.xp_total}"
-                    binding.tvNivel.text = "Nível ${summary.nivel}"
-                    binding.tvStreak.text = "🔥 ${summary.streak} dias"
+                    binding.tvSaudacao.text = "Olá, aventureiro!"
+                    binding.tvNivel.text = "Nível ${summary.nivel}  ·  ${GamificationUtils.xpParaProximoNivel(summary.xp_total)} XP para o próximo nível"
+                    binding.tvXp.text = "⚡ ${summary.xp_total} XP"
+                    binding.tvStreak.text = "🔥 ${summary.streak} ${if (summary.streak == 1) "dia" else "dias"}"
                     binding.progressDia.progress = GamificationUtils.progressoNivel(summary.xp_total)
-                    binding.tvSaudacao.text = "Olá, aventureiro! Nível ${summary.nivel}"
                 }
             } catch (e: IOException) {
-                Toast.makeText(this@MainActivity, "Sem conexão com o servidor", Toast.LENGTH_SHORT).show()
+                binding.tvSaudacao.text = "Sem conexão com o servidor"
+                binding.tvNivel.text = "Verifique sua conexão e tente novamente"
             }
         }
     }
