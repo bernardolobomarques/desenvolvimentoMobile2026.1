@@ -10,7 +10,9 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- Título (outlined para garantir visibilidade) -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Título da meta *">
@@ -23,11 +25,13 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Descrição -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="Descrição">
+            android:layout_marginTop="16dp"
+            android:hint="Descrição (opcional)">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDescricao"
@@ -40,8 +44,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="Categoria"
+            android:textColor="@color/on_surface_variant"
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <Spinner
@@ -54,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Prioridade"
+            android:textColor="@color/on_surface_variant"
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
         <Spinner
@@ -64,7 +70,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
@@ -73,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Alta prioridade"
+                android:textColor="@color/on_surface"
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
             <Switch
@@ -84,7 +91,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSalvar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="32dp"
             android:text="Salvar Meta"
             android:textSize="16sp" />

@@ -11,14 +11,40 @@
         android:padding="8dp"
         android:clipToPadding="false" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/tvEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Nenhuma meta ainda.\nCrie sua primeira meta!"
+        android:orientation="vertical"
         android:gravity="center"
-        android:visibility="gone"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎯"
+            android:textSize="48sp"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Nenhuma meta ainda."
+            android:gravity="center"
+            android:textColor="@color/on_surface"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Crie sua primeira meta!"
+            android:gravity="center"
+            android:textColor="@color/on_surface_variant"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+    </LinearLayout>
 
 </FrameLayout>
